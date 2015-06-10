@@ -1,0 +1,12 @@
+<% posts.each do |post| %>
+  <h1 class= Title:</strong> <%= post.title %></p>
+
+  <p class= "date">
+  Submitted<%= time_time_ago_in_words(post.created_at)%> Ago
+
+  <p> <strong>Blog Body:</strong> <%= post.body %></p>
+
+
+  <%= button_to "Delete", { controller: "posts", action: "destroy", id: post.id}, method: "destroy"%>
+
+<%end%>
