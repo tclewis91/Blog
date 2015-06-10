@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
 
   def index
-    all_posts = Post.all
-    respond_to do |format|
-      format.html do
+    all_posts = Post.all.order('created_at DESC')
+    respond_to do |f|
+      f.html do
         render 'index.html.erb', locals: {posts: all_posts}
       end
     end
@@ -27,8 +27,8 @@ class PostsController < ApplicationController
 
   def show
     search_blog = Post.find(params[:id])
-    respond to do |format|
-      format.html do
+    respond to do |f|
+      f.html do
         render 'show.html.erb', locals: {posts_serach: search_posts}
       end
     end
@@ -40,6 +40,8 @@ class PostsController < ApplicationController
       redirect_to "/posts"
     end
   end
+
+private
 
   def post_blog
     params.require(:post).permit(:title, :body)
