@@ -1,39 +1,25 @@
 class PostsController < ApplicationController
 
   def index
-    all_posts = Post.all.order('created_at DESC')
-    respond_to do |f|
-      f.html do
-        render 'index.html.erb', locals: {posts: all_posts}
-      end
-    end
+   @posts = Post.all
   end
 
-#creates new post, saves it , and then redirects you to post page
+
   def new
-    @post = Post.new(post_params)
-    @post.save
+    @post = Post.new
   end
 
 
   def create
     begin
-      post = Post.create(post_params)
-      respond_to do |f|
-        f.html do
-          redirect_to "/posts/#{post.id}"
-        end
-      end
-    end
+    @post = Post.new(post_params)
+    @post.save
+    redirect_to @post
   end
 
+
   def show
-    search_blog = Post.find(params[:id])
-    respond to do |f|
-      f.html do
-        render 'show.html.erb', locals: {posts_serach: search_posts}
-      end
-    end
+    @post = Post.find(params[:id])
   end
 
 
