@@ -19,15 +19,17 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
-  def update
-    begin
-    post = Post.update(params[:id], post_params)
-    respond_to do |f|
-      f.html do
-        redirect_to "/posts/#{post.id}"
-      end
-    end
+  def edit
+    @post = Post.find(params[:id])
   end
+
+  def update #spacing looks jacked..fix later)
+    if @post.update(params[:post].permit(:title, :body))
+      redirect_to @post
+    else
+     'edit'
+  end
+end
 
   def destroy
     if Post.exists?(params[:id])
@@ -35,7 +37,6 @@ class PostsController < ApplicationController
       redirect_to "/posts"
     end
   end
-end
 
   private
 
