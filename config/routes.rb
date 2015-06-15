@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+get 'welcome/about', as: 'about'
 
 post'/posts', to: 'posts#new'
+
 resources :welcomes
 resources :posts
 

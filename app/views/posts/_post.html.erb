@@ -1,12 +1,19 @@
-<% posts.each do |post| %>
-  <h1 class= Title:</strong> <%= post.title %></p>
+<h1>Thoughts</h1>
+  <%= form_for posts.each do|f| %>
+  <%= f.label : title%><br>
+  <%= f.text_field :title %><br>
+  <br>
 
   <p class= "date">
-  Submitted<%= time_time_ago_in_words(post.created_at)%> Ago
+  Submitted<%= time_ago_in_words(post.created_at)%> Ago</p>
 
-  <p> <strong>Blog Body:</strong> <%= post.body %></p>
+  <%= f.label :body %><br>
+  <%- f.text_field :body %><br>
+  <br>
 
 
   <%= button_to "Delete", { controller: "posts", action: "destroy", id: post.id}, method: "destroy"%>
+  <%= f.submit %>
 
 <%end%>
+<%%>

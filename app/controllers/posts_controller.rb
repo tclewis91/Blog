@@ -11,6 +11,7 @@ class PostsController < ApplicationController
 
 
   def new
+
     render 'new.html.erb', locals: { post: Post.new}
   end
 
@@ -34,6 +35,17 @@ class PostsController < ApplicationController
     end
   end
 
+
+  def update
+    begin
+    post = Post.update(params[:id], post_params)
+    respond_to do |f|
+      f.html do
+        redirect_to "/posts/#{post.id}"
+      end
+    end
+  end
+
   def destroy
     if Post.exists?(params[:id])
       Post.destroy(params[:id])
@@ -41,10 +53,11 @@ class PostsController < ApplicationController
     end
   end
 
-private
+  private
 
-  def post_blog
-    params.require(:post).permit(:title, :body)
+    def post_blog
+      params.require(:post).permit(:title, :body)
+    end
   end
 end
 
