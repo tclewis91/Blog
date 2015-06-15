@@ -9,11 +9,12 @@ class PostsController < ApplicationController
     end
   end
 
-
+#creates new post, saves it , and then redirects you to post page
   def new
-
-    render 'new.html.erb', locals: { post: Post.new}
+    @post = Post.new(post_params)
+    @post.save
   end
+
 
   def create
     begin
