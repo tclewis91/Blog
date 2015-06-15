@@ -4,11 +4,9 @@ class PostsController < ApplicationController
    @posts = Post.all
   end
 
-
   def new
     @post = Post.new
   end
-
 
   def create
     begin
@@ -17,11 +15,9 @@ class PostsController < ApplicationController
     redirect_to @post
   end
 
-
   def show
     @post = Post.find(params[:id])
   end
-
 
   def update
     begin
@@ -39,6 +35,7 @@ class PostsController < ApplicationController
       redirect_to "/posts"
     end
   end
+end
 
   private
 
@@ -47,5 +44,6 @@ class PostsController < ApplicationController
     end
   end
 end
+
 
 
