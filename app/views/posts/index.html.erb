@@ -1,4 +1,7 @@
 
-<h4>Total posts (<%= posts.count %>)</h4>
-
+<% @posts.each do |post| %>
+  <div class="post_wrapper">
+    <h2 class="title"><%= link_to post.title, post %></h2>
+  </div>
+<% end %>
 
